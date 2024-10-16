@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin-top: 50px;
+}
+
+#opciones button {
+    font-size: 2rem;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#opciones button:hover {
+    transform: scale(1.1);
+}
+
+#resultado {
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Piedra papel o tijera ✊ </h1>
+    <div id="opciones">
+        <button onclick="jugar('piedra')">🪨</button>
+        <button onclick="jugar('papel')">📄</button> 
+        <button onclick="jugar('tijera')">✂️</button>
+    </div>
+
+    <div id="resultado"></div>
+    <script>
+        function jugar(jugador) {
+            const opciones = ['piedra', 'papel', 'tijera'];
+            const maquina = opciones[Math.floor(Math.random() * 3)];
+            let resultado;
+
+            if (jugador === maquina) {
+                resultado = 'Empate';
+            } else if (
+                (jugador === 'piedra' && maquina === 'tijera') ||
+                (jugador === 'papel' && maquina === 'piedra') ||
+                (jugador === 'tijera' && maquina === 'papel')
+            ) {
+                resultado = 'Ganaste';
+            } else {
+                resultado = 'Perdiste';
+            }
+
+            document.getElementById('resultado').innerHTML= resultado;
+        }
+
+    </script>
+</body>
+</html>
