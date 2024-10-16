@@ -40,24 +40,27 @@ body {
         <button onclick="jugar('papel')">📄</button> 
         <button onclick="jugar('tijera')">✂️</button>
     </div>
-
+    <div id="resultadoMaquina"></div>
     <div id="resultado"></div>
     <script>
         function jugar(jugador) {
             const opciones = ['piedra', 'papel', 'tijera'];
             const maquina = opciones[Math.floor(Math.random() * 3)];
             let resultado;
-
+            let resultadoMaquina = document.getElementById('resultadoMaquina');
             if (jugador === maquina) {
-                resultado = 'Empate';
+                resultadoMaquina.innerHTML= `<p>'la maquina':${maquina}</p>`;
+                resultado = 'Empate 👐';
             } else if (
                 (jugador === 'piedra' && maquina === 'tijera') ||
                 (jugador === 'papel' && maquina === 'piedra') ||
                 (jugador === 'tijera' && maquina === 'papel')
             ) {
-                resultado = 'Ganaste';
+                resultadoMaquina.innerHTML= `<p>'la maquina':${maquina}</p>`;
+                resultado = 'Ganaste 🎉';
             } else {
-                resultado = 'Perdiste';
+                resultadoMaquina.innerHTML= `<p>'la maquina':${maquina}</p>`;
+                resultado = 'Perdiste 😭';
             }
 
             document.getElementById('resultado').innerHTML= resultado;
