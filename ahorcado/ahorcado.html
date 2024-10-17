@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego del Ahorcado</title>
+    <style>
+        /* estilos.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#palabraSecreta {
+    font-size: 24px;
+    letter-spacing: 5px;
+}
+
+#intentosRestantes {
+    font-size: 18px;
+}
+
+#muneco {
+    
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.perdido {
+    color: red;
+}
+
+.ganado {
+    color: green;
+}
+p {
+    margin-top: 0px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Juego del Ahorcado</h1>
+    <p id="palabraSecreta"></p>
+    <p>Ingresa una letra:</p>
+    <input type="text" id="entradaLetra" maxlength="1">
+    <button onclick="adivinarLetra()">Adivinar</button>
+    <p id="intentosRestantes">Intentos restantes: 6</p>
+    <p id="mensajeResultado"></p>
+    <div id="muneco">
+        <p class="1">  O</p>
+        <P class="2"> /|\</P>
+        <P class="3"> /|\</P>
+     
+    </div>
+    <script>
+// script.js
+let palabra = "JUSTO"; 
+let intentos = 3; 
+let letrasCorrectas = Array(palabra.length).fill('_');
+let letrasUsadas = [];
+
+document.getElementById("palabraSecreta").textContent = letrasCorrectas.join(' ');
+
+function adivinarLetra() {
+    const letra = document.getElementById("entradaLetra").value.toUpperCase();
+    const mensajeResultado = document.getElementById("mensajeResultado");
+
+    if (letra === '' || letrasUsadas.includes(letra)) {
+        mensajeResultado.textContent = "Ingresa una letra válida o no repetida.";
+        return;
+    }
+
+    letrasUsadas.push(letra);
+    let acierto = false;
+
+    for (let i = 0; i < palabra.length; i++) {
+        if (palabra[i] === letra) {
+            letrasCorrectas[i] = letra;
+            acierto = true;
+        }
+    }
+
+    document.getElementById("palabraSecreta").textContent = letrasCorrectas.join(' ');
+
+    if (!acierto) {
+        intentos--;
+        document.getElementById("intentosRestantes").textContent = "Intentos restantes: " + intentos;
+        actualizarMuneco();
+    }
+
+    if (letrasCorrectas.join('') === palabra) {
+        mensajeResultado.textContent = "¡Felicidades! Has ganado.";
+        mensajeResultado.className = "ganado";
+    } else if (intentos === 0) {
+        mensajeResultado.textContent = "Has perdido. La palabra era: " + palabra;
+        mensajeResultado.className = "perdido";
+    }
+
+    document.getElementById("entradaLetra").value = '';
+}
+
+function actualizarMuneco() {
+    const partesMuneco1 = document.getElementsByClassName("1");
+    const partesMuneco2 = document.getElementsByClassName("2");
+    const partesMuneco3 = document.getElementsByClassName("3");
+
+    switch (intentos) {
+        case 2:
+            partesMuneco1[0].style.display = 'none';
+            break;
+        case 1:
+            partesMuneco2[0].style.display = 'none';
+            break;
+        case 0:
+            partesMuneco3[0].style.display = 'none';
+            break;
+    }
+}
+    
+
+    </script>
+</body>
+</html>
