@@ -4,26 +4,43 @@
     <meta charset="UTF-8">
     <title>Juego del Ahorcado</title>
     <style>
-        /* estilos.css */
+    
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 50px;
+    background-color: #f2f2f2;
+    
+
+
+}   
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+
+
 }
+
 
 #palabraSecreta {
     font-size: 24px;
     letter-spacing: 5px;
+    margin-bottom: 20px;
+
 }
 
 #intentosRestantes {
     font-size: 18px;
+    margin-bottom: 20px;
+
 }
 
 #muneco {
     
     font-size: 18px;
     margin-top: 20px;
+
 }
 
 .perdido {
@@ -34,18 +51,52 @@ body {
     color: green;
 }
 p {
-    margin-top: 0px;
+    margin: 0px;
+    padding: 0px;
+
 }
 
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+}
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    padding: 20px;
+    
+}
     </style>
 </head>
 <body>
+    <div class="principal">
     <h1>Juego del Ahorcado</h1>
     <p id="palabraSecreta"></p>
     <p>Ingresa una letra:</p>
     <input type="text" id="entradaLetra" maxlength="1">
     <button onclick="adivinarLetra()">Adivinar</button>
-    <p id="intentosRestantes">Intentos restantes: 6</p>
+    <p id="intentosRestantes">Intentos restantes: 3</p>
     <p id="mensajeResultado"></p>
     <div id="muneco">
         <p class="1">  O</p>
@@ -53,8 +104,12 @@ p {
         <P class="3"> /|\</P>
      
     </div>
+
+</div>
+
+
     <script>
-// script.js
+
 let palabra = "JUSTO"; 
 let intentos = 3; 
 let letrasCorrectas = Array(palabra.length).fill('_');
