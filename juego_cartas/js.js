@@ -1,5 +1,5 @@
 // Lista de emojis para las cartas
-const emojis = ['🍎', '🍌', '🍇', '🍉', ];
+const emojis = ['🍎', '🍌', '🍇', '🍉','🍎', '🍌', '🍇', '🍉', ];
 
 // Variables para el juego
 let cartasVolteadas = [];
@@ -20,8 +20,8 @@ function iniciarJuego() {
 // Función para generar cartas al azar
 function generarCartas() {
     contenedorCartas.innerHTML = '';
-    const cartasEmojis = [...emojis, ...emojis]; // Duplicamos los emojis para tener pares
-    cartasEmojis.sort(() => Math.random() - 0.5); // Barajamos las cartas
+     cartasEmojis =emojis; 
+     cartasEmojis.sort(() => Math.random() - 0.5); // Barajamos las cartas
 
     cartasEmojis.forEach((emoji, indice) => {
         const carta = document.createElement('div');
