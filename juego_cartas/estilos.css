@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.contenedor-juego {
+    text-align: center;
+   
+}
+
+.contenedor-cartas {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    margin: 20px 0;
+}
+
+.carta {
+    width: 100px;
+    height: 150px;
+    background-color: #2e8b57;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+.carta.volteada {
+    background-color: #ffcc00;
+}
+
+.carta.completada {
+    background-color: #ccc;
+    cursor: default;
+}
+
+#mensaje {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#reiniciar-btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#reiniciar-btn:hover {
+    background-color: #555;
+}
