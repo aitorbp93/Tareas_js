@@ -61,3 +61,7 @@ body {
 #reiniciar-btn:hover {
     background-color: #555;
 }
+#encontrado {
+    display: block !important;
+    color: red; /* Para asegurarte de que sea visible */
+}
