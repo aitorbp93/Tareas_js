@@ -1,79 +1,91 @@
-const productos = [
-    { id: 1, nombre: "Laptop", precio: 500 },
-    { id: 2, nombre: "Smartphone", precio: 300 },
-    { id: 3, nombre: "auriculares", precio: 50 },
-    { id: 4, nombre: "Smartwatch", precio: 120 },
-    { id: 5, nombre: "Teclado", precio: 40 },
-    { id: 6, nombre: "Mochila", precio: 30 },
-    { id: 7, nombre: "Camisa", precio: 25 },
-    { id: 8, nombre: "Taza", precio: 10 }
-];
+// Verificar que el archivo JavaScript se está cargando
+console.log("JavaScript cargado");
 
-// Función para obtener una cookie por su nombre
-function obtenerCookie(nombre) {
-    let cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.indexOf(nombre + '=') === 0) {
-            return decodeURIComponent(cookie.substring((nombre + '=').length, cookie.length));
-        }
-    }
-    return null;
+// Función para obtener los datos del carrito desde localStorage
+function getCarrito() {
+    return JSON.parse(localStorage.getItem("carrito") || "[]");
 }
 
-// Función para establecer una cookie con nombre y valor
-function establecerCookie(nombre, valor, dias) {
-    const fecha = new Date();
-    fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
-    const expiracion = "expires=" + fecha.toUTCString();
-    document.cookie = nombre + "=" + encodeURIComponent(valor) + ";" + expiracion + ";path=/";
+// Función para guardar los datos del carrito en localStorage
+function setCarrito(carrito) {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    console.log(`Carrito guardado en localStorage: ${JSON.stringify(carrito)}`);
 }
 
-// Obtener el carrito desde la cookie o inicializar un carrito vacío
-let carrito = JSON.parse(obtenerCookie("carrito")) || [];
-
-// Función para agregar un producto al carrito
-function agregarAlCarrito(idProducto) {
-    const producto = productos.find(prod => prod.id === idProducto);
-    const itemCarrito = carrito.find(item => item.id === idProducto);
-
-    if (itemCarrito) {
-        itemCarrito.cantidad++;
-    } else {
-        carrito.push({ ...producto, cantidad: 1 });
-    }
-
-    actualizarCarrito();
-}
-
-// Función para actualizar el carrito en la interfaz y en la cookie
+// Función para actualizar visualmente el carrito
 function actualizarCarrito() {
-    const listaCarrito = document.getElementById("lista-carrito");
-    listaCarrito.innerHTML = "";
+    console.log("Actualizando el carrito...");
+    const carrito = getCarrito();
+    const contenidoCarrito = document.querySelector(".contenido-carrito");
+    const totalPrecio = document.getElementById("total-precio");
 
-    carrito.forEach(item => {
-        const div = document.createElement("div");
-        div.innerHTML = `
-            <p>${item.nombre} - €${item.precio} x ${item.cantidad}</p>
-            <button onclick="eliminarDelCarrito(${item.id})">Eliminar</button>
+    contenidoCarrito.innerHTML = "";  // Limpiamos la vista actual del carrito
+
+    if (carrito.length === 0) {
+        console.log("El carrito está vacío.");
+        totalPrecio.textContent = `Total: 0 €`;
+        return;
+    }
+
+    let total = 0;
+
+    carrito.forEach((item, index) => {
+        console.log(`Producto en el carrito: ${item.nombre} - Cantidad: ${item.cantidad}`);
+        
+        const itemElemento = document.createElement("div");
+        itemElemento.innerHTML = `
+            <p>${item.nombre} - ${item.cantidad} x ${item.precio} €</p>
+            <button onclick="eliminarProducto(${index})">Eliminar</button>
         `;
-        listaCarrito.appendChild(div);
+        contenidoCarrito.appendChild(itemElemento);
+
+        total += item.cantidad * item.precio;
     });
 
-    establecerCookie("carrito", JSON.stringify(carrito), 7);  // Guardar el carrito en una cookie por 7 días
+    totalPrecio.textContent = `Total: ${total} €`;
+    console.log(`Total actualizado: ${total} €`);
 }
 
-// Función para eliminar un producto del carrito
-function eliminarDelCarrito(idProducto) {
-    carrito = carrito.filter(item => item.id !== idProducto);
+// Agregar producto al carrito
+document.querySelectorAll(".agregar-carrito").forEach(boton => {
+    boton.addEventListener("click", () => {
+        console.log("Botón de agregar al carrito pulsado");
+        const producto = boton.closest(".producto");
+        const id = producto.getAttribute("data-id");
+        const nombre = producto.getAttribute("data-nombre");
+        const precio = parseFloat(producto.getAttribute("data-precio"));
+        let carrito = getCarrito();
+
+        const index = carrito.findIndex(item => item.id === id);
+        if (index === -1) {
+            carrito.push({ id, nombre, precio, cantidad: 1 });
+            console.log(`Producto añadido: ${nombre}`);
+        } else {
+            carrito[index].cantidad += 1;
+            console.log(`Cantidad incrementada para: ${nombre}`);
+        }
+
+        setCarrito(carrito);
+        actualizarCarrito();
+    });
+});
+
+// Eliminar producto del carrito
+function eliminarProducto(index) {
+    console.log(`Eliminando producto en índice: ${index}`);
+    let carrito = getCarrito();
+    carrito.splice(index, 1);
+    setCarrito(carrito);
     actualizarCarrito();
 }
 
-// Función para vaciar el carrito
-function vaciarCarrito() {
-    carrito = [];
+// Vaciar el carrito
+document.getElementById("vaciar-carrito").addEventListener("click", () => {
+    console.log("Vaciando el carrito...");
+    setCarrito([]);
     actualizarCarrito();
-}
+});
 
-// Cargar el carrito desde la cookie al iniciar
-document.addEventListener("DOMContentLoaded", actualizarCarrito);
+// Cargar el carrito al inicio
+console.log("Cargando carrito al inicio...");
+actualizarCarrito();

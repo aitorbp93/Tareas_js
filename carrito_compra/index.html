@@ -3,69 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
+    <title>Carrito de la Compra</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <h1>Carrito de Compras</h1>
-    <section id="productos">
+    <div class="lista-productos">
         <h2>Productos Disponibles</h2>
-       
-        <div class="producto" data-id="1" data-nombre="Laptop" data-precio="500">
-            <img src="https://th.bing.com/th/id/OIP.DLRLitiNsit7bTV1G3tv-gHaGD?w=212&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Laptop">
-            <p>Laptop - 500€</p>
-            <button onclick="agregarAlCarrito(1)">Agregar al Carrito</button>
-        </div>
-      
-        <div class="producto" data-id="2" data-nombre="Smartphone" data-precio="300">
-            <img src="https://th.bing.com/th/id/OIP.iY-ETtdPqmSrPHDlV_Oh4QHaVH?w=115&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Smartphone">
-            <p>Smartphone - 300€</p>
-            <button onclick="agregarAlCarrito(2)">Agregar al Carrito</button>
+        
+  
+        <div class="producto" data-id="1" data-nombre="Miel de Romero" data-precio="12">
+            <img src="miel_romero.jpg" alt="Miel de Romero">
+            <p>Miel de Romero - 12 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
         </div>
         
-        <div class="producto" data-id="3" data-nombre="auriculares" data-precio="50">
-            <img src="https://th.bing.com/th/id/OIP.hC37BtRe6-mgVLbc0JVYUQHaHa?w=205&h=205&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="auriculares">
-            <p>Auriculares - 50€</p>
-            <button onclick="agregarAlCarrito(3)">Agregar al Carrito</button>
+        <div class="producto" data-id="2" data-nombre="Té Verde Orgánico" data-precio="8">
+            <img src="te_verde.jpg" alt="Té Verde Orgánico">
+            <p>Té Verde Orgánico - 8 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
         </div>
         
-        <div class="producto" data-id="4" data-nombre="Smartwatch" data-precio="120">
-            <img src="https://th.bing.com/th/id/OIP.QRe5fjNYZdjetkh0nJZAWAHaIC?w=183&h=199&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Smartwatch">
-            <p>Smartwatch - 120€</p>
-            <button onclick="agregarAlCarrito(4)">Agregar al Carrito</button>
+        <div class="producto" data-id="3" data-nombre="Aceite de Oliva Virgen Extra" data-precio="15">
+            <img src="aceite_oliva.jpg" alt="Aceite de Oliva Virgen Extra">
+            <p>Aceite de Oliva Virgen Extra - 15 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
         </div>
         
-        <div class="producto" data-id="5" data-nombre="Teclado" data-precio="40">
-            <img src="https://th.bing.com/th/id/OIP._LJ-3mleK-IgEkXIRNLKkAHaFq?w=232&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Teclado">
-            <p>Teclado - 40€</p>
-            <button onclick="agregarAlCarrito(5)">Agregar al Carrito</button>
+        <div class="producto" data-id="4" data-nombre="Jabón de Lavanda Artesanal" data-precio="5">
+            <img src="jabon_lavanda.jpg" alt="Jabón de Lavanda Artesanal">
+            <p>Jabón de Lavanda Artesanal - 5 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
         </div>
         
-        <div class="producto" data-id="6" data-nombre="Mochila" data-precio="30">
-            <img src="https://th.bing.com/th/id/OIP.xVHGakNIasF4ytz9MGg1OAHaHa?w=198&h=198&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Mochila">
-            <p>Mochila - 30€</p>
-            <button onclick="agregarAlCarrito(6)">Agregar al Carrito</button>
-        </div>
-       
-        <div class="producto" data-id="7" data-nombre="Camisa" data-precio="25">
-            <img src="https://via.placeholder.com/100x100.png?text=Camisa" alt="Camisa">
-            <p>Camisa - 25€</p>
-            <button onclick="agregarAlCarrito(7)">Agregar al Carrito</button>
+        <div class="producto" data-id="5" data-nombre="Almendras Tostadas" data-precio="7">
+            <img src="almendras_tostadas.jpg" alt="Almendras Tostadas">
+            <p>Almendras Tostadas - 7 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
         </div>
         
-        <div class="producto" data-id="8" data-nombre="Taza" data-precio="10">
-            <img src="https://via.placeholder.com/100x100.png?text=Taza" alt="Taza">
-            <p>Taza - 10€</p>
-            <button onclick="agregarAlCarrito(8)">Agregar al Carrito</button>
+        <div class="producto" data-id="6" data-nombre="Queso Manchego Curado" data-precio="20">
+            <img src="queso_manchego.jpg" alt="Queso Manchego Curado">
+            <p>Queso Manchego Curado - 20 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
         </div>
-    </section>
+        
+        <div class="producto" data-id="7" data-nombre="Vino Tinto Reserva" data-precio="25">
+            <img src="vino_reserva.jpg" alt="Vino Tinto Reserva">
+            <p>Vino Tinto Reserva - 25 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
+        </div>
+        
+        <div class="producto" data-id="8" data-nombre="Chocolate Negro 85%" data-precio="4">
+            <img src="chocolate_negro.jpg" alt="Chocolate Negro 85%">
+            <p>Chocolate Negro 85% - 4 €</p>
+            <button class="agregar-carrito">Añadir al carrito</button>
+        </div>
+    </div>
 
-    <section id="carrito">
-        <h2>Carrito de Compras</h2>
-        <div id="lista-carrito"></div>
-        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
-    </section>
+    <div class="carrito-compra">
+        <h2>Carrito de la Compra</h2>
+        <div class="contenido-carrito"></div>
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+        <p id="total-precio">Total: 0 €</p>
+    </div>
 
     <script src="js.js"></script>
+
 </body>
 </html>
