@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batalla Pokémon</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Batalla Pokémon</h1>
+  <div id="arena-batalla">
+    <div id="jugador">
+      <div id="estadisticas-jugador">
+        <!-- Barra de vida con el texto de vida actual/maxima -->
+        <div id="vida-jugador" class="barra-vida">
+          <span id="texto-vida-jugador"></span>
+        </div>
+      </div>
+      <img id="imagen-jugador" alt="Jugador">
+    </div>
+    <div id="oponente">
+      <div id="estadisticas-oponente">
+        <!-- Barra de vida con el texto de vida actual/maxima -->
+        <div id="vida-oponente" class="barra-vida">
+          <span id="texto-vida-oponente"></span>
+        </div>
+      </div>
+      <img id="imagen-oponente" alt="Oponente">
+    </div>
+  </div>
+  <!-- Div para mostrar los mensajes de combate -->
+  <div id="mensajes-combate"></div>
+  
+  <div id="controles">
+    <button onclick="atacar()">Atacar</button>
+    <button onclick="defender()">Defender</button>
+    <button onclick="curarse()">Curarse</button>
+  </div>
+  
+  <script src="datosPokemons.js"></script>
+  <script src="battleLogic.js"></script>
+</body>
+</html>
