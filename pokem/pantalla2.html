@@ -6,7 +6,7 @@
   <title>¡Es hora de la batalla!</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="pantalla-batalla">
   <h1>¡Batalla Pokémon!</h1>
   <div id="contenedor-batalla">
     <div id="pokemon-jugador"></div>
@@ -14,7 +14,9 @@
     <div id="pokemon-oponente"></div>
   </div>
   <button id="comenzar-batalla">Comenzar Batalla</button>
+  <audio id="audio-vs" src="sonido/batalla-pokemon.mp3"></audio>
 
+   
   <script src="datosPokemons.js"></script>
   <script src="battleSetup.js"></script>
 </body>

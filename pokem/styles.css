@@ -185,4 +185,87 @@
   .boton-seleccionar:hover {
     background-color: #44bd32;
   }
-      
+  #reiniciar-batalla {
+    display: none; /* Oculto inicialmente */
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  #reiniciar-batalla:hover {
+    background-color: #45a049;
+  }
+  
+  #reiniciar-batalla:active {
+    transform: scale(0.95);
+  }
+  
+  #reiniciar-batalla:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 3px;
+  }
+  #logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #logo {
+    max-width: 300px; /* Ajusta el tamaño del logo */
+    width: 100%;
+    height: auto;
+  }
+  /* Fondo para la pantalla de batalla */
+.pantalla-batalla {
+  background-image: url('imagen/vs.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#contenedor-batalla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#vs {
+  font-size: 3rem;
+  font-weight: bold;
+  color: yellow;
+  margin: 0 20px;
+  text-shadow: 2px 2px 8px rgba(255, 165, 0, 0.8);
+}
+
+button#comenzar-batalla {
+  background-color: #ffcc00;
+  color: #333;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+button#comenzar-batalla:hover {
+  background-color: #ff9900;
+  transform: scale(1.05);
+}

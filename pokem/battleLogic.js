@@ -25,6 +25,9 @@ const textoVidaJugador = document.getElementById("texto-vida-jugador");
 const textoVidaOponente = document.getElementById("texto-vida-oponente");
 const mensajesCombate = document.getElementById("mensajes-combate");
 
+// Seleccionar el botón de reiniciar batalla
+const botonReiniciarBatalla = document.getElementById("reiniciar-batalla");
+
 // Función para mostrar mensajes de combate
 function mostrarMensaje(mensaje) {
   mensajesCombate.innerText = mensaje;
@@ -41,6 +44,14 @@ function actualizarBarraVida(barra, vida, vidaTotal, texto) {
 // Inicialización de las barras de vida al inicio
 actualizarBarraVida(barraVidaJugador, vidaJugador, pokemonJugador.hp, textoVidaJugador);
 actualizarBarraVida(barraVidaOponente, vidaOponente, pokemonOponente.hp, textoVidaOponente);
+
+// Función para mostrar el botón al final de la batalla
+function mostrarBotonReiniciar() {
+  botonReiniciarBatalla.style.display = "block"; // Mostrar el botón
+  botonReiniciarBatalla.addEventListener("click", () => {
+    window.location.href = "pantalla1.html"; // Redirigir a la pantalla de selección
+  });
+}
 
 // Función de ataque del jugador
 function atacar() {
@@ -61,6 +72,7 @@ function atacar() {
     setTimeout(ataqueOponente, 1000);
   } else {
     mostrarMensaje("¡Ganaste la batalla!");
+    mostrarBotonReiniciar(); // Mostrar el botón al ganar
   }
 }
 
@@ -112,6 +124,7 @@ function ataqueOponente() {
 
     if (vidaJugador <= 0) {
       mostrarMensaje("Perdiste la batalla...");
+      mostrarBotonReiniciar(); // Mostrar el botón al perder
     }
   } else if (accionOponente === "defender") {
     enDefensaOponente = true;
