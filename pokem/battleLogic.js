@@ -33,6 +33,13 @@ function mostrarMensaje(mensaje) {
   mensajesCombate.innerText = mensaje;
 }
 
+// Función para registrar movimientos en localStorage
+function registrarMovimiento(movimiento) {
+  let historialMovimientos = JSON.parse(localStorage.getItem("historialMovimientos")) || [];
+  historialMovimientos.push(movimiento);
+  localStorage.setItem("historialMovimientos", JSON.stringify(historialMovimientos));
+}
+
 // Función para actualizar las barras de vida visualmente y el texto de vida actual
 function actualizarBarraVida(barra, vida, vidaTotal, texto) {
   let porcentaje = (vida / vidaTotal) * 100;
@@ -68,6 +75,9 @@ function atacar() {
   vidaOponente = Math.max(vidaOponente - danio, 0);
   actualizarBarraVida(barraVidaOponente, vidaOponente, pokemonOponente.hp, textoVidaOponente);
 
+  // Registrar el movimiento en localStorage
+  registrarMovimiento(`${pokemonJugador.name} ataca y hace ${danio} de daño a ${pokemonOponente.name}`);
+
   if (vidaOponente > 0) {
     setTimeout(ataqueOponente, 1000);
   } else {
@@ -80,6 +90,10 @@ function atacar() {
 function defender() {
   enDefensaJugador = true;
   mostrarMensaje(`${pokemonJugador.name} se pone en modo de defensa y reduce el daño en el próximo ataque.`);
+  
+  // Registrar el movimiento en localStorage
+  registrarMovimiento(`${pokemonJugador.name} se pone en defensa`);
+
   setTimeout(() => {
     enDefensaJugador = false;
   }, 1000);
@@ -91,6 +105,10 @@ function curarse() {
   let curacion = Math.floor(Math.random() * 10 + 5);
   vidaJugador = Math.min(vidaJugador + curacion, pokemonJugador.hp);
   mostrarMensaje(`${pokemonJugador.name} se cura y recupera ${curacion} puntos de vida.`);
+  
+  // Registrar el movimiento en localStorage
+  registrarMovimiento(`${pokemonJugador.name} se cura y recupera ${curacion} puntos de vida`);
+
   actualizarBarraVida(barraVidaJugador, vidaJugador, pokemonJugador.hp, textoVidaJugador);
   setTimeout(ataqueOponente, 1000);
 }
@@ -101,10 +119,8 @@ function ataqueOponente() {
   
   // Lógica para determinar la acción de la máquina
   if (vidaOponente < pokemonOponente.hp * 0.3) {
-    // Si la vida está por debajo del 30%, tiene mayor probabilidad de curarse
     accionOponente = Math.random() < 0.5 ? "curarse" : Math.random() < 0.5 ? "defender" : "atacar";
   } else {
-    // De lo contrario, elige al azar entre atacar, defender y curarse
     accionOponente = Math.random() < 0.4 ? "atacar" : Math.random() < 0.4 ? "defender" : "curarse";
   }
 
@@ -122,13 +138,20 @@ function ataqueOponente() {
     vidaJugador = Math.max(vidaJugador - danio, 0);
     actualizarBarraVida(barraVidaJugador, vidaJugador, pokemonJugador.hp, textoVidaJugador);
 
+    // Registrar el movimiento en localStorage
+    registrarMovimiento(`${pokemonOponente.name} ataca y hace ${danio} de daño a ${pokemonJugador.name}`);
+
     if (vidaJugador <= 0) {
       mostrarMensaje("Perdiste la batalla...");
-      mostrarBotonReiniciar(); // Mostrar el botón al perder
+      mostrarBotonReiniciar();
     }
   } else if (accionOponente === "defender") {
     enDefensaOponente = true;
     mostrarMensaje(`${pokemonOponente.name} se pone en modo de defensa y reducirá el daño en el próximo ataque.`);
+    
+    // Registrar el movimiento en localStorage
+    registrarMovimiento(`${pokemonOponente.name} se pone en defensa`);
+
     setTimeout(() => {
       enDefensaOponente = false;
     }, 1000);
@@ -136,6 +159,10 @@ function ataqueOponente() {
     let curacion = Math.floor(Math.random() * 10 + 5);
     vidaOponente = Math.min(vidaOponente + curacion, pokemonOponente.hp);
     mostrarMensaje(`${pokemonOponente.name} se cura y recupera ${curacion} puntos de vida.`);
+    
+    // Registrar el movimiento en localStorage
+    registrarMovimiento(`${pokemonOponente.name} se cura y recupera ${curacion} puntos de vida`);
+
     actualizarBarraVida(barraVidaOponente, vidaOponente, pokemonOponente.hp, textoVidaOponente);
   }
 }
