@@ -278,3 +278,70 @@ button#comenzar-batalla:hover {
   background-color: #ff9900;
   transform: scale(1.05);
 }
+
+#seleccionar-aleatorio {
+  background-color: #3498db; /* Azul claro */
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 5%;
+  margin-bottom: 8%;
+}
+
+#seleccionar-aleatorio:hover {
+  background-color: #2980b9; /* Azul más oscuro al pasar el ratón */
+}
+
+#seleccionar-aleatorio:active {
+  transform: scale(0.95); /* Efecto de reducción al hacer clic */
+}
+/* Estilos generales para efectos de ataque */
+#efectos-combate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Evitar que interfiera con otros elementos */
+}
+
+.efecto-ataque {
+  position: absolute;
+  font-size: 3rem;
+  color: #ff3838;
+  animation: efectoAtaque 0.5s ease-out;
+}
+
+@keyframes efectoAtaque {
+  0% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.efecto-defensa {
+  position: absolute;
+  font-size: 2rem;
+  color: #4cd137;
+  animation: efectoDefensa 0.5s ease-out;
+}
+
+@keyframes efectoDefensa {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.efecto-curacion {
+  position: absolute;
+  font-size: 2rem;
+  color: #38ff9f;
+  animation: efectoCuracion 0.5s ease-out;
+}
+
+@keyframes efectoCuracion {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
